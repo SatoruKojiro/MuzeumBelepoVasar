@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <span>Kiállítások részletei</span>
+</mat-toolbar>
+
+<div class="content">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <mat-card *ngFor="let exhibition of exhibitions" class="exhibition-card">
+    <mat-card-header>
+      <mat-card-title>{{ exhibition.title }}</mat-card-title>
+      <mat-card-subtitle>Ár: {{ exhibition.price }} Ft</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>{{ exhibition.description }}</mat-list-item>
+      </mat-list>
+      <mat-chip-listbox>
+        <mat-chip>Új</mat-chip>
+        <mat-chip color="accent" selected>Limitált</mat-chip>
+      </mat-chip-listbox>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="openSnackBar(exhibition.title)" matTooltip="Jegyvásárlás">
+        <mat-icon>shopping_cart</mat-icon>
+        Vásárlás
+        <span matBadge="4" matBadgeOverlap="false"></span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

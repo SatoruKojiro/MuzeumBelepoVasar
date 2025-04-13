@@ -1,0 +1,48 @@
+<div class="container">
+  <h1>Jegyvásárlás</h1>
+
+  <form [formGroup]="dateForm" (ngSubmit)="onDateSubmit()" class="date-form">
+    <label for="visitDate">Látogatás dátuma:</label>
+    <input
+      type="date"
+      id="visitDate"
+      formControlName="visitDate"
+      (change)="onDateSubmit()"
+      [min]="today"
+      required
+    />
+    <div *ngIf="dateForm.get('visitDate')?.invalid && dateForm.get('visitDate')?.touched" class="error-message">
+      Kérjük, válasszon egy érvényes dátumot!
+    </div>
+  </form>
+
+  <div class="tickets-section" *ngIf="selectedDate">
+    <h2>Válassza ki a jegyeket</h2>
+    <app-ticket-selector
+      *ngFor="let ticket of tickets"
+      [ticket]="ticket"
+      [ticketDescription]="ticketDescriptions[ticket.type]"
+      (quantityChange)="onQuantityChange($event)"
+    ></app-ticket-selector>
+
+    <div class="total-price">
+      <h3>Összesen: {{ totalPrice | currencyFormat }}</h3>
+    </div>
+
+    <button
+      class="add-to-cart-btn"
+      [disabled]="totalPrice === 0 || dateForm.invalid"
+      (click)="addToCart()"
+    >
+      Kosárhoz adás
+    </button>
+
+    <div *ngIf="cartMessage" class="cart-message">
+      {{ cartMessage }}
+    </div>
+  </div>
+
+  <div *ngIf="!selectedDate" class="no-date-message">
+    Kérjük, válasszon egy dátumot a jegyvásárlás megkezdéséhez!
+  </div>
+</div>

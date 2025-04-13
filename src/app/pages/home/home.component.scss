@@ -1,0 +1,55 @@
+.container {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  color: #fff;
+
+  h1 {
+    font-size: 2rem;
+    color: #ff8c00;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .exhibitions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+
+    .exhibition-card {
+      background-color: #4a1a2c;
+      padding: 1rem;
+      border-radius: 8px;
+      width: 300px;
+
+      h2 {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #fff;
+        margin: 0.5rem 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .exhibitions {
+      .exhibition-card {
+        width: 100%;
+      }
+    }
+  }
+}

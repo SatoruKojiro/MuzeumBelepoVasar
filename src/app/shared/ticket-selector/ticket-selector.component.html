@@ -1,0 +1,13 @@
+<div class="ticket-item">
+    <div class="ticket-info">
+      <h3>{{ ticket.type }}</h3>
+      <p>{{ ticketDescription }}</p>
+      <a href="#" class="details-link">Részletek</a>
+    </div>
+    <div class="ticket-price">{{ ticket.price }} Ft</div>
+    <div class="ticket-quantity">
+      <button (click)="updateQuantity(-1)">-</button>
+      <span>{{ ticket.quantity }}</span>
+      <button (click)="updateQuantity(1)">+</button>
+    </div>
+  </div>
