@@ -1,0 +1,54 @@
+<div class="contact-container">
+    <header class="header">
+      <h1>Kapcsolat</h1>
+    </header>
+  
+    <div class="content">
+      <mat-card class="contact-card">
+        <mat-card-header>
+          <mat-card-title>Üzenet küldése</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <!-- Név mező -->
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Név</mat-label>
+              <input matInput formControlName="name" />
+              <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+                A név kötelező
+              </mat-error>
+              <mat-error *ngIf="contactForm.get('name')?.hasError('minlength')">
+                A név minimum 2 karakter hosszú kell legyen
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>E-mail</mat-label>
+              <input matInput formControlName="email" type="email" />
+              <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+                Az e-mail kötelező
+              </mat-error>
+              <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+                Érvénytelen e-mail formátum
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Üzenet</mat-label>
+              <textarea matInput formControlName="message" rows="5"></textarea>
+              <mat-error *ngIf="contactForm.get('message')?.hasError('required')">
+                Az üzenet kötelező
+              </mat-error>
+              <mat-error *ngIf="contactForm.get('message')?.hasError('minlength')">
+                Az üzenet minimum 10 karakter hosszú kell legyen
+              </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">
+              Üzenet küldése
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>

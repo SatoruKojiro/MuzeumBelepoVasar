@@ -1,37 +1,47 @@
 .sidenav-container {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 mat-toolbar {
-  background-color: #fff;
-  color: #003087;
-  box-shadow: 0 2px 4px rgba(116, 115, 115, 0.1);
+  background-color: #003087;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
 
   .logo {
+    display: flex;
+    align-items: center;
+
     span {
       font-size: 1.2rem;
       font-weight: bold;
-      color: #003087;
+      color: #fff;
     }
   }
 
   button {
-    color: #003087;
+    color: #fff;
   }
 
   a[mat-button] {
-    color: #003087;
+    color: #fff;
     font-size: 0.9rem;
     text-transform: uppercase;
     margin-left: 1rem;
     display: none;
 
+    &:hover {
+      color: #66b0ff;
+    }
+
     &.active {
       font-weight: bold;
+      border-bottom: 2px solid #fff;
     }
   }
 }
@@ -55,9 +65,23 @@ mat-sidenav {
 
 mat-sidenav-content {
   background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: auto;
+
+  .page-content {
+    flex: 1;
+    padding-bottom: 2rem;
+    min-height: calc(100vh - 64px);
+  }
+
+  app-footer {
+    margin-top: auto;
+  }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   mat-toolbar {
     padding: 0 2rem;
 
@@ -75,7 +99,7 @@ mat-sidenav-content {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   mat-toolbar {
     padding: 0 3rem;
 
@@ -89,5 +113,25 @@ mat-sidenav-content {
       font-size: 1.1rem;
       margin-left: 3rem;
     }
+  }
+}
+
+@media (max-width: 1023px) {
+  mat-toolbar {
+    padding: 0 0.5rem;
+
+    .logo {
+      span {
+        font-size: 1rem;
+      }
+    }
+
+    button {
+      font-size: 1.2rem;
+    }
+  }
+
+  mat-sidenav {
+    width: 200px;
   }
 }

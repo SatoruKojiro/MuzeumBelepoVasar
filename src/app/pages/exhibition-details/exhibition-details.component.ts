@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-exhibition-details',
@@ -26,6 +27,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatTooltipModule,
     MatBadgeModule,
     MatSnackBarModule,
+    CommonModule,
   ],
   templateUrl: './exhibition-details.component.html',
   styleUrl: './exhibition-details.component.scss'

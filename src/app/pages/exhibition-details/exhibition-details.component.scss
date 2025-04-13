@@ -1,7 +1,50 @@
-.content { padding: 2rem; background-color: #1a1a1a; min-height: 100vh; }
-    .exhibition-card { margin-bottom: 1rem; background-color: #4a1a2c; color: #fff; }
-    mat-card-title { font-size: 1.5rem; }
-    mat-card-subtitle { font-size: 1.2rem; color: #ff8c00; }
-    mat-list-item { color: #fff; }
-    mat-chip { background-color: #ff8c00; color: #fff; }
-    mat-spinner { margin: 2rem auto; }
+.content {
+    padding: 2rem;
+    background-color: #1a1a1a;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .exhibition-card {
+    margin-bottom: 1rem;
+    background-color: #4a1a2c;
+    color: #fff;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  mat-card-title {
+    font-size: 1.5rem;
+    color: #ff8c00;
+  }
+  
+  mat-card-subtitle {
+    font-size: 1.2rem;
+    color: #ff8c00;
+  }
+  
+  mat-list-item {
+    color: #fff;
+  }
+  
+  mat-chip {
+    background-color: #ff8c00;
+    color: #fff;
+  }
+  
+  mat-spinner {
+    margin: 2rem auto;
+    color: #ff8c00;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  button {
+    background-color: #ff8c00;
+    color: #fff;
+  }

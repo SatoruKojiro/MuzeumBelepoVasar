@@ -1,0 +1,103 @@
+.contact-container {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  
+    .header {
+      text-align: center;
+      padding: 2rem 0;
+      background-color: #1a1a1a;
+  
+      h1 {
+        font-size: 2.5rem;
+        margin: 0;
+        color: #ff8c00;
+      }
+    }
+  
+    .content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      background-color: #1a1a1a;
+  
+      .contact-card {
+        background-color: #4a1a2c;
+        padding: 2rem;
+        border-radius: 8px;
+        max-width: 600px;
+        width: 100%;
+        color: #fff;
+  
+        mat-card-header {
+          mat-card-title {
+            color: #ff8c00;
+            font-size: 1.5rem;
+          }
+        }
+  
+        mat-card-content {
+          form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+  
+            .full-width {
+              width: 100%;
+  
+              mat-label {
+                color: #ff8c00;
+              }
+  
+              input,
+              textarea {
+                color: #fff;
+                background-color: #2a2a2a;
+                border-radius: 4px;
+              }
+  
+              mat-error {
+                color: #ff4444;
+                font-size: 0.9rem;
+              }
+            }
+  
+            button {
+              background-color: #ff8c00;
+              color: #fff;
+              margin-top: 1rem;
+  
+              &:disabled {
+                background-color: #666;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .content {
+      padding: 1rem;
+    }
+  
+    .contact-card {
+      padding: 1rem;
+    }
+  }
+  
+  :host ::ng-deep {
+    .custom-snackbar {
+      background-color: #ff8c00;
+      color: #fff;
+  
+      .mat-snack-bar-action {
+        color: #fff;
+      }
+    }
+  }

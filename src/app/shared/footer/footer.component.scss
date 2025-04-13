@@ -1,0 +1,35 @@
+.footer-card {
+    background-color: #4a1a2c;
+    color: #fff;
+    padding: 1rem;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    text-align: center;
+  
+    .divider-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+  
+      mat-icon {
+        color: #ff8c00;
+        font-size: 1.5rem;
+      }
+  
+      mat-divider.custom-divider {
+        border-top-color: #ff8c00;
+        border-top-width: 3px;
+        flex: 1;
+        max-width: 300px;
+      }
+    }
+  
+    .footer-text {
+      font-size: 0.9rem;
+      margin: 0;
+      color: #ff8c00;
+    }
+  }

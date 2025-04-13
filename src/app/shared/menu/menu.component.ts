@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,7 +28,7 @@ export class MenuComponent{
   }
 
   checkScreenSize() {
-    this.isLargeScreen = window.innerWidth >= 768;
+    this.isLargeScreen = window.innerWidth >= 1500;
     if (this.isLargeScreen) {
       this.isSidenavOpen = true;
     } else {

@@ -2,9 +2,11 @@
   <mat-sidenav #sidenav mode="over" [(opened)]="isSidenavOpen" *ngIf="!isLargeScreen">
     <mat-nav-list>
       <a mat-list-item routerLink="/home" routerLinkActive="active">Kezdőlap</a>
-      <a mat-list-item routerLink="/about" routerLinkActive="active">A múzeumról</a>
+      <a mat-list-item routerLink="/exhibitions" routerLinkActive="active">Kiállítások részletei</a>
       <a mat-list-item routerLink="/vasar" routerLinkActive="active">Jegyvásárlás</a>
       <a mat-list-item routerLink="/jegyek" routerLinkActive="active">Megvásárolt jegyek</a>
+      <a mat-list-item routerLink="/about" routerLinkActive="active">A múzeumról</a>
+      <a mat-list-item routerLink="/contact" routerLinkActive="active">Kapcsolat</a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -20,14 +22,18 @@
 
      <ng-container *ngIf="isLargeScreen">
         <a mat-button routerLink="/home" routerLinkActive="active">Kezdőlap</a>
-        <a mat-button routerLink="/about" routerLinkActive="active">A múzeumról</a>
+        <a mat-button routerLink="/exhibitions" routerLinkActive="active">Kiállítások részletei</a>
         <a mat-button routerLink="/vasar" routerLinkActive="active">Jegyvásárlás</a>
         <a mat-button routerLink="/jegyek" routerLinkActive="active">Megvásárolt jegyek</a>
+        <a mat-button routerLink="/about" routerLinkActive="active">A múzeumról</a>
+        <a mat-button routerLink="/contact" routerLinkActive="active">Kapcsolat</a>
      </ng-container>
    </mat-toolbar>
 
    
-     <ng-content></ng-content>
+    <div class="page-content">
+      <ng-content></ng-content>
+    </div>
    </mat-sidenav-content>
 </mat-sidenav-container>
 
