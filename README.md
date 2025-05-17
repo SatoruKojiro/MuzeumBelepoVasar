@@ -2,6 +2,14 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
 
+## Projekt Neve & Készítő
+
+A projekt neve:	Online múzeum belépő vásárlás
+
+Név: Bárdi-Pajtás Dávid Zsolt
+
+Neptunkód: A9M31T
+
 ## Development server
 
 To start a local development server, run:
