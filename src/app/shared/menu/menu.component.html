@@ -7,15 +7,17 @@
       <a mat-list-item routerLink="/jegyek" routerLinkActive="active" (click)="closeSidenav()">Megvásárolt jegyek</a>
       <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="closeSidenav()">A múzeumról</a>
       <a mat-list-item routerLink="/contact" routerLinkActive="active" (click)="closeSidenav()">Kapcsolat</a>
+      <a mat-list-item *ngIf="!(isAuthenticated$ | async)" routerLink="/login" routerLinkActive="active" (click)="closeSidenav()">Bejelentkezés</a>
+      <a mat-list-item *ngIf="!(isAuthenticated$ | async)" routerLink="/register" routerLinkActive="active" (click)="closeSidenav()">Regisztráció</a>
       <a mat-list-item *ngIf="isAuthenticated$ | async" (click)="logout(); closeSidenav()">Kijelentkezés</a>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar>
-      <div class="logo">
+      <a routerLink="/home" class="logo">
         <span>Munkácsy Múzeum</span>
-      </div>
+      </a>
 
       <button mat-icon-button (click)="toggleSidenav()" *ngIf="!isLargeScreen">
         <mat-icon>menu</mat-icon>
@@ -28,6 +30,8 @@
         <a mat-button routerLink="/jegyek" routerLinkActive="active">Megvásárolt jegyek</a>
         <a mat-button routerLink="/about" routerLinkActive="active">A múzeumról</a>
         <a mat-button routerLink="/contact" routerLinkActive="active">Kapcsolat</a>
+        <a mat-button *ngIf="!(isAuthenticated$ | async)" routerLink="/login" routerLinkActive="active">Bejelentkezés</a>
+        <a mat-button *ngIf="!(isAuthenticated$ | async)" routerLink="/register" routerLinkActive="active">Regisztráció</a>
         <a mat-button *ngIf="isAuthenticated$ | async" (click)="logout(); closeSidenav()">Kijelentkezés</a>
       </ng-container>
     </mat-toolbar>

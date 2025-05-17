@@ -6,10 +6,11 @@ import { VasarComponent } from './pages/vasar/vasar.component';
 import { ExhibitionDetailsComponent } from './pages/exhibition-details/exhibition-details.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'register', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'jegyek', component: JegyekComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'exhibition/:id', component: ExhibitionDetailsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'home' },
+  { path: 'register', component: RegisterComponent },
+  { path: '**', redirectTo: 'login' },
 ];

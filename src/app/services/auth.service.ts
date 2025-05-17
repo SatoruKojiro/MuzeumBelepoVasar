@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, from, BehaviorSubject, EMPTY } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Auth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,17 @@ export class AuthService {
       console.error('Auth state error:', error);
       this.authState.next(false);
     });
+  }
+
+  register(email: string, password: string): Observable<boolean> {
+    return from(createUserWithEmailAndPassword(this.auth, email, password)).pipe(
+      map(userCredential => !!userCredential.user),
+      tap(isAuthenticated => this.authState.next(isAuthenticated)),
+      catchError(error => {
+        console.error('Registration error:', error);
+        return EMPTY;
+      })
+    );
   }
 
   login(email: string, password: string): Observable<boolean> {
