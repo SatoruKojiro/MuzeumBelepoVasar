@@ -1,0 +1,13 @@
+<div class="login-container">
+  <h2>Bejelentkezés</h2>
+  <div *ngIf="errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="email" placeholder="Email" type="email" required />
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="password" type="password" placeholder="Jelszó" required />
+  </div>
+  <button (click)="login()" [disabled]="!email || !password">Bejelentkezés</button>
+</div>

@@ -1,10 +1,19 @@
 <div class="container">
   <h1>Kezdőlap</h1>
   <div class="exhibitions">
-    <div *ngFor="let exhibition of exhibitions" class="exhibition-card">
-      <h2>{{ exhibition.title }}</h2>
-      <p>{{ exhibition.description }}</p>
-      <p>Ár: {{ exhibition.price }} Ft</p>
+    <div *ngIf="exhibitions.length === 0; else showExhibitions">
+      <p>Nincsenek kiállítások betöltve. Kérlek, jelentkezz be!</p>
     </div>
+    <ng-template #showExhibitions>
+      <div *ngFor="let exhibition of exhibitions" class="exhibition-card" (click)="viewExhibitionDetails(exhibition.id)" style="cursor: pointer;">
+        <h2>{{ exhibition.title }}</h2>
+        <p>{{ exhibition.description }}</p>
+        <p>Ár: {{ exhibition.price }} Ft</p>
+        <a [routerLink]="['/exhibition', exhibition.id]" (click)="$event.stopPropagation()" class="details-link">Részletek</a>
+      </div>
+    </ng-template>
   </div>
+  <button *ngIf="hasMore" (click)="loadMore()" [disabled]="loading" class="load-more-button">
+      {{ loading ? 'Töltés...' : 'További kiállítások' }}
+    </button>
 </div>

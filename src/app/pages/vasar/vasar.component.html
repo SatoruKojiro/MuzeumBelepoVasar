@@ -21,8 +21,14 @@
     <app-ticket-selector
       *ngFor="let ticket of tickets"
       [ticket]="ticket"
-      [ticketDescription]="ticketDescriptions[ticket.type]"
+      [ticketDescription]="ticketDescriptions[ticket.type] | truncate:60"
+      [ticketCategory]="ticketCategories[ticket.type] | capitalize"
+      [isDisabled]="isFormDisabled"
+      [maxQuantity]="10"
       (quantityChange)="onQuantityChange($event)"
+      (priceChange)="onPriceChange($event)"
+      (selectionError)="onSelectionError($event)"
+      (ticketSelected)="onTicketSelected($event)"
     ></app-ticket-selector>
 
     <div class="total-price">

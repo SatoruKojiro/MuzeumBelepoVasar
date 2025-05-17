@@ -1,17 +1,17 @@
 <div class="container">
-    <h1>Megvásárolt jegyek</h1>
-  
-    <div *ngIf="cart && visits.length > 0; else noCart">
-      <h2>Látogatás dátuma: {{ visitDate }}</h2>
-      <div class="tickets-list">
-        <div *ngFor="let ticket of cart.tickets" class="ticket-item">
-          <p>{{ ticket.type }}: {{ ticket.quantity }} db - {{ ticket.quantity * ticket.price | currencyFormat }}</p>
-        </div>
+  <h1>Megvásárolt jegyek</h1>
+
+  <div *ngIf="cart && cart.tickets.length > 0; else noCart">
+    <h2>Látogatás dátuma: {{ visitDate }}</h2>
+    <div class="tickets-list">
+      <div *ngFor="let ticket of cart.tickets" class="ticket-item">
+        <p>{{ getExhibitionTitle(ticket.type) }}: {{ ticket.quantity }} db - {{ ticket.quantity * ticket.price | currencyFormat }}</p>
       </div>
-      <h3>Összes látogató: {{ visits[0].visitorCount || 0 }} fő</h3>
     </div>
-  
-    <ng-template #noCart>
-      <p class="no-tickets">Nincsenek megvásárolt jegyek.</p>
-    </ng-template>
+    <h3>Összes látogató: {{ visits[0].visitorCount || 0 }} fő</h3>
   </div>
+
+  <ng-template #noCart>
+    <p class="no-tickets">Nincsenek megvásárolt jegyek.</p>
+  </ng-template>
+</div>

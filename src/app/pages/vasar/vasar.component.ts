@@ -5,13 +5,16 @@ import { Ticket } from '../../models/ticket';
 import { TicketSelectorComponent } from '../../shared/ticket-selector/ticket-selector.component';
 import { CurrencyFormatPipe } from '../../shared/pipes/currency-format.pipe';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
+import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 
 @Component({
   selector: 'app-vasar',
   templateUrl: './vasar.component.html',
   styleUrls: ['./vasar.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, TicketSelectorComponent, CurrencyFormatPipe, CommonModule],
+  imports: [ReactiveFormsModule, TicketSelectorComponent, CurrencyFormatPipe, CapitalizePipe, TruncatePipe, CommonModule, MatSnackBarModule],
 })
 export class VasarComponent implements OnInit {
   dateForm: FormGroup;
@@ -27,10 +30,16 @@ export class VasarComponent implements OnInit {
     youth: 'Kedvezményes belépő a Magyarországi színező, Rejtőzködő fényképek 1862-ből című kiállításba',
     senior: 'Kedvezményes belépő a Magyarországi színező, Rejtőzködő fényképek 1862-ből című kiállításba',
   };
+  ticketCategories: { [key: string]: string } = {
+    full: 'General',
+    youth: 'Discounted',
+    senior: 'Discounted',
+  };
   totalPrice = 0;
   cartMessage: string | null = null;
+  isFormDisabled = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) {
     const today = new Date();
     this.today = today.toISOString().split('T')[0];
 
@@ -60,6 +69,24 @@ export class VasarComponent implements OnInit {
       ticket.quantity = updatedTicket.quantity;
       this.calculateTotalPrice();
     }
+  }
+
+  onPriceChange(price: number) {
+    this.totalPrice = this.tickets.reduce((sum: number, ticket: Ticket) => sum + ticket.quantity * ticket.price, 0);
+  }
+
+  onSelectionError(error: string) {
+    this.snackBar.open(error, 'Bezár', {
+      duration: 3000,
+      panelClass: ['custom-snackbar'],
+    });
+  }
+
+  onTicketSelected(ticket: Ticket) {
+    this.snackBar.open(`${ticket.type} jegy kiválasztva: ${ticket.quantity} db`, 'Bezár', {
+      duration: 3000,
+      panelClass: ['custom-snackbar'],
+    });
   }
 
   calculateTotalPrice() {
