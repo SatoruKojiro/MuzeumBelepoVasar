@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, from, BehaviorSubject, EMPTY, of } from 'rxjs';
-import { map, catchError, tap, switchMap } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { Auth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword, User } from '@angular/fire/auth';
 
 @Injectable({
@@ -41,11 +41,6 @@ export class AuthService {
         console.log('Login successful, isAuthenticated:', isAuthenticated);
         this.authState.next(isAuthenticated);
       }),
-      switchMap(() => this.userState.pipe(map(user => {
-        const isAdmin = !!user && user.email === 'admin@gmail.com';
-        console.log('Checking admin after login:', isAdmin, 'User:', user?.email);
-        return isAdmin;
-      }))),
       catchError(error => {
         console.error('Login error:', error);
         return of(false);
