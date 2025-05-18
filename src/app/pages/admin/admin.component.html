@@ -1,0 +1,51 @@
+<div class="admin-container">
+  <h2>Admin Dashboard</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div class="add-exhibition-form">
+    <h3>Új Kiállítás Hozzáadása</h3>
+    <div class="form-group">
+      <input [(ngModel)]="newExhibition.id" placeholder="ID" type="text" required />
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="newExhibition.title" placeholder="Cím" type="text" required />
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="newExhibition.description" placeholder="Leírás" type="text" required />
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="newExhibition.price" placeholder="Ár (Ft)" type="number" required />
+    </div>
+    <button (click)="addExhibition()">Kiállítás Hozzáadása</button>
+  </div>
+
+  <div *ngIf="selectedExhibition" class="edit-exhibition-form">
+    <h3>Kiállítás Módosítása</h3>
+    <div class="form-group">
+      <label>ID: {{ selectedExhibition.id }}</label> <!-- Read-only ID -->
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="selectedExhibition.title" placeholder="Cím" type="text" required />
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="selectedExhibition.description" placeholder="Leírás" type="text" required />
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="selectedExhibition.price" placeholder="Ár (Ft)" type="number" required />
+    </div>
+    <button (click)="updateExhibition()">Módosítás Mentése</button>
+    <button (click)="cancelEdit()">Mégse</button>
+  </div>
+
+  <h3>Kiállítások</h3>
+  <ul>
+    <li *ngFor="let exhibition of exhibitions">
+      {{ exhibition.title }} (ID: {{ exhibition.id }}) - {{ exhibition.price }} Ft
+      <button (click)="editExhibition(exhibition)">Szerkesztés</button>
+      <button (click)="deleteExhibition(exhibition.id)">Törlés</button>
+    </li>
+  </ul>
+</div>

@@ -5,6 +5,7 @@ import { JegyekComponent } from './pages/jegyek/jegyek.component';
 import { VasarComponent } from './pages/vasar/vasar.component';
 import { ExhibitionDetailsComponent } from './pages/exhibition-details/exhibition-details.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { AdminComponent } from './pages/admin/admin.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'vasar', component: VasarComponent, canActivate: [AuthGuard] },
   { path: 'exhibition/:id', component: ExhibitionDetailsComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: 'login' },

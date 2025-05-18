@@ -10,6 +10,12 @@ Név: Bárdi-Pajtás Dávid Zsolt
 
 Neptunkód: A9M31T
 
+AZ ADMIN FUNKCIÓKHOZ KÉREM HASZNÁLJA EZT A LOGINT:
+
+Email: admin@gmail.com
+
+Jelszó: 123456
+
 ## Development server
 
 To start a local development server, run:
