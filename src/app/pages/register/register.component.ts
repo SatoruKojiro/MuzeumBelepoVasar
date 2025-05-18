@@ -28,9 +28,9 @@ export class RegisterComponent {
     this.authService.register(this.email, this.password).subscribe(success => {
       if (success) {
         this.errorMessage = null;
-        this.successMessage = 'Sikeres regisztráció! Átirányítás a bejelentkezéshez...';
+        this.successMessage = 'Sikeres regisztráció! Átirányítás a kezdőlapra...';
         setTimeout(() => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
         }, 2000);
       } else {
         this.errorMessage = 'Regisztrációs hiba. Próbálja újra.';

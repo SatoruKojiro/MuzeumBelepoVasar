@@ -13,7 +13,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'register', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'jegyek', component: JegyekComponent },
+  { path: 'jegyek', component: JegyekComponent, canActivate: [AuthGuard] },
   { path: 'vasar', component: VasarComponent, canActivate: [AuthGuard] },
   { path: 'exhibition/:id', component: ExhibitionDetailsComponent },
   { path: 'contact', component: ContactComponent },

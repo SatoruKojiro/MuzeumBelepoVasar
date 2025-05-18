@@ -22,7 +22,7 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe(success => {
       if (success) {
         this.errorMessage = null;
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       } else {
         this.errorMessage = 'Hibás email vagy jelszó.';
       }
