@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, getDocs, doc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, CollectionReference, QuerySnapshot, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, getDocs, doc, getDoc, updateDoc, deleteDoc, query, where, orderBy, limit, startAfter, CollectionReference, QuerySnapshot, QueryDocumentSnapshot, setDoc } from '@angular/fire/firestore';
 import { Observable, from, map, catchError, throwError } from 'rxjs';
 import { Exhibition } from '../models/exhibition';
 
@@ -43,7 +43,7 @@ export class ExhibitionService {
     let addedCount = 0;
     for (const exhibition of initialExhibitions) {
       if (!existingTitles.has(exhibition.title)) {
-        await this.createExhibition(exhibition as Exhibition).catch(err => {
+        await this.createExhibition({ id: '', ...exhibition } as Exhibition).catch(err => {
           console.error(`Error seeding ${exhibition.title}:`, err);
         });
         console.log(`Added exhibition: ${exhibition.title}`);
@@ -61,7 +61,12 @@ export class ExhibitionService {
   async createExhibition(exhibition: Exhibition): Promise<void> {
     const { id, ...data } = exhibition;
     try {
-      await addDoc(this.exhibitionsCollection, data);
+      if (id) {
+        const exhibitionDoc = doc(this.firestore, `exhibitions/${id}`);
+        await setDoc(exhibitionDoc, data);
+      } else {
+        await addDoc(this.exhibitionsCollection, data);
+      }
     } catch (error) {
       throw new Error('Nem jogosult új kiállítás létrehozására. Csak az adminisztrátor (admin@gmail.com) végezhet ilyen műveletet.');
     }

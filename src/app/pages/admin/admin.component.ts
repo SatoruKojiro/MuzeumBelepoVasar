@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ExhibitionService } from '../../services/exhibition.service';
 import { Exhibition } from '../../models/exhibition';
+import { QueryDocumentSnapshot } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-admin',
@@ -13,9 +14,14 @@ import { Exhibition } from '../../models/exhibition';
 })
 export class AdminComponent {
   exhibitions: Exhibition[] = [];
+  expensiveExhibitions: Exhibition[] = [];
+  limitedExhibitions: Exhibition[] = [];
+  specificExhibitions: Exhibition[] = [];
   newExhibition: Partial<Exhibition> = { id: '', title: '', description: '', price: 0 };
   selectedExhibition: Partial<Exhibition> | null = null;
+  specificExhibitionId: string = '';
   errorMessage: string | null = null;
+  lastDoc: QueryDocumentSnapshot | null = null;
 
   constructor(private exhibitionService: ExhibitionService) {
     this.loadExhibitions();
@@ -25,6 +31,43 @@ export class AdminComponent {
     this.exhibitionService.getExhibitions().subscribe(data => {
       this.exhibitions = data;
     });
+  }
+
+  loadExpensiveExhibitions() {
+    this.exhibitionService.getExpensiveExhibitions().subscribe(data => {
+      this.expensiveExhibitions = data;
+    });
+  }
+
+  loadLimitedExhibitions() {
+    this.exhibitionService.getLimitedExhibitions().subscribe(result => {
+      this.limitedExhibitions = result.exhibitions;
+      this.lastDoc = result.lastDoc;
+    });
+  }
+
+  loadMoreExhibitions() {
+    if (this.lastDoc) {
+      this.exhibitionService.getPaginatedExhibitions(this.lastDoc).subscribe(result => {
+        this.limitedExhibitions = [...this.limitedExhibitions, ...result.exhibitions];
+        this.lastDoc = result.lastDoc;
+      });
+    }
+  }
+
+  loadSpecificExhibitions() {
+    if (this.specificExhibitionId) {
+      this.exhibitionService.getSpecificExhibitions(this.specificExhibitionId).subscribe(data => {
+        this.specificExhibitions = data;
+        if (data.length === 0) {
+          this.errorMessage = 'Nincs kiállítás a megadott ID-vel.';
+        } else {
+          this.errorMessage = null;
+        }
+      });
+    } else {
+      this.errorMessage = 'Kérjük, adja meg az ID-t.';
+    }
   }
 
   addExhibition() {

@@ -25,7 +25,7 @@
   <div *ngIf="selectedExhibition" class="edit-exhibition-form">
     <h3>Kiállítás Módosítása</h3>
     <div class="form-group">
-      <label>ID: {{ selectedExhibition.id }}</label> <!-- Read-only ID -->
+      <label>ID: {{ selectedExhibition.id }}</label>
     </div>
     <div class="form-group">
       <input [(ngModel)]="selectedExhibition.title" placeholder="Cím" type="text" required />
@@ -39,13 +39,56 @@
     <button (click)="updateExhibition()">Módosítás Mentése</button>
     <button (click)="cancelEdit()">Mégse</button>
   </div>
-
-  <h3>Kiállítások</h3>
-  <ul>
-    <li *ngFor="let exhibition of exhibitions">
-      {{ exhibition.title }} (ID: {{ exhibition.id }}) - {{ exhibition.price }} Ft
-      <button (click)="editExhibition(exhibition)">Szerkesztés</button>
-      <button (click)="deleteExhibition(exhibition.id)">Törlés</button>
-    </li>
-  </ul>
 </div>
+
+<div class="get-container">
+    <div class="query-sections">
+      <h3>Lekérdezések</h3>
+      <div class="query-section">
+       <button (click)="loadExhibitions()">Összes Kiállítás Betöltése</button>
+      </div>
+      <div class="query-section">
+       <button (click)="loadExpensiveExhibitions()">Drága Kiállítások (Ár > 1500 Ft)</button>
+      </div>
+      <div class="query-section">
+       <button (click)="loadLimitedExhibitions()">Limitált Kiállítások (Első 2)</button>
+      </div>
+      <div class="query-section specific-exhibition-query">
+       <input [(ngModel)]="specificExhibitionId" placeholder="Adja meg az ID-t" type="text" />
+       <button (click)="loadSpecificExhibitions()">Specifikus Kiállítás Betöltése</button>
+      </div>
+  </div>
+</div>
+  
+<div class="get-container">
+    <h3>Összes Kiállítás</h3>
+    <ul>
+      <li *ngFor="let exhibition of exhibitions">
+        {{ exhibition.title }} (ID: {{ exhibition.id }}) - {{ exhibition.price }} Ft
+        <button (click)="editExhibition(exhibition)">Szerkesztés</button>
+        <button (click)="deleteExhibition(exhibition.id)">Törlés</button>
+      </li>
+    </ul>
+
+    <h3>Drága Kiállítások (Ár > 1500 Ft)</h3>
+    <ul>
+      <li *ngFor="let exhibition of expensiveExhibitions">
+        {{ exhibition.title }} (ID: {{ exhibition.id }}) - {{ exhibition.price }} Ft
+      </li>
+    </ul>
+
+    <h3>Limitált Kiállítások (Első 2, Rendezve Cím Szerint)</h3>
+    <ul>
+      <li *ngFor="let exhibition of limitedExhibitions">
+        {{ exhibition.title }} (ID: {{ exhibition.id }}) - {{ exhibition.price }} Ft
+      </li>
+    </ul>
+    <button *ngIf="lastDoc" (click)="loadMoreExhibitions()">Továbbiak Betöltése</button>
+
+    <h3>Specifikus Kiállítás (ID Alapján)</h3>
+    <ul>
+      <li *ngFor="let exhibition of specificExhibitions">
+        {{ exhibition.title }} (ID: {{ exhibition.id }}) - {{ exhibition.price }} Ft
+      </li>
+    </ul>
+  </div>
