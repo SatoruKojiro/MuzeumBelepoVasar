@@ -16,6 +16,10 @@ Email: admin@gmail.com
 
 Jelszó: 123456
 
+HOSTOLT PROJEKT:
+
+https://muzeum-belepo-projekt.web.app/login
+
 ## Development server
 
 To start a local development server, run:
